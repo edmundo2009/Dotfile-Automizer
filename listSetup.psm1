@@ -45,7 +45,7 @@
     }
 
     @{
-        TITLE = "Scoop MANAGER_INSTALLER"
+        TITLE = "Scoop Manager"
         MANAGER = "SCOOP_MANAGER"
         CONTAINER = @( # (Name, Command, Path)
             # Package manager <- Required
