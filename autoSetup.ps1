@@ -9,7 +9,7 @@ if($env:OS -notlike "*Windows*")
 
 [Object] $modules = @("listSetup.psm1", "library.psm1", "managerSetting.psm1") # List of modules to import
 
-if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Windows-Dotfiles") # Check if the current location is not the Windows-Dotfiles folder
+if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer") # Check if the current location is not the Dotfile-Automizer folder
 {
     foreach($curr in $modules)
     {
@@ -51,7 +51,7 @@ Import-Module ".\library.psm1"
 #endregion Functions
 
 #region Module Removal
-if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Windows-Dotfiles")
+if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer")
 {
     foreach($curr in $modules)
     {

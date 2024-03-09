@@ -3,7 +3,7 @@
 > [!WARNING]
 > The following is the link to the autosetup script: DO NOT RUN WITHOUT READING WHAT THE SCRIPT DOES
 > ```
-> Invoke-RestMethod https://raw.githubusercontent.com/AndreM222/Windows-Dotfiles/master/autoSetup.ps1 | Invoke-Expression 
+> Invoke-RestMethod https://raw.githubusercontent.com/AndreM222/Dotfile-Automizer/master/autoSetup.ps1 | Invoke-Expression 
 > ```
 
 <h2>Dependencies 📃</h2>
@@ -47,5 +47,5 @@ package manager is added then the managerSetting script should be updated to inc
 - [ ] Make listSetup to autoupdate when a package manager in the list of managerSettings is used.
 - [ ] Make command status to show changes withing scripts
 - [ ] Make command to push script changes
-- [ ] Make Autosetup for MacOS
 - [ ] Make Autosetup for Linux
+- [ ] Make Autosetup for MacOS
