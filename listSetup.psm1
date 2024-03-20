@@ -34,7 +34,7 @@
             @("Python3", "Python.Python.3.12", "Python3")
         )
     }
-    
+
     @{
         TITLE = "Node Versions"
         MANAGER = "NVM"
@@ -57,7 +57,7 @@
     @{
         TITLE = "Winget Tools"
         MANAGER = "WINGET"
-        CONTAINER = @( # (Name, Id, Path) 
+        CONTAINER = @( # (Name, Id, Path)
             # Tools
             @("SQLite", "SQLite.SQLite", "SQLite.SQLite"),
             @("Neovim", "Neovim.Neovim", "Neovim"),
@@ -75,7 +75,7 @@
             @("LLVM", "LLVM.LLVM", "-i LLVM.LLVM")
         )
     }
-    
+
     @{
         TITLE = "NPM Tools"
         MANAGER = "NPM"
@@ -95,7 +95,7 @@
             @("prettier", "prettier", "prettier")
         )
     }
-    
+
     @{
         TITLE = "Dotnet Tools"
         MANAGER = "DOTNET"
@@ -113,7 +113,7 @@
             ,@("Autopep8", "autopep8", "autopep8")
         )
     }
-    
+
     @{
         TITLE = "Scoop Tools"
         MANAGER = "SCOOP"
@@ -123,7 +123,7 @@
             @("GCC", "gcc", "gcc")
         )
     }
-    
+
     @{
         TITLE = "PowerShell Tools"
         MANAGER = "POWERSHELL"
@@ -136,7 +136,7 @@
             @("Z", "z", "z")
         )
     }
-    
+
     # Dotfiles Setup
     @{
         TITLE = "Git Dotfiles"
@@ -145,11 +145,11 @@
             # Dot Setup
             @("Dotfile-Automizer", "https://github.com/AndreM222/Dotfile-Automizer.git", ".config"),
             @("Windows-Dotfiles", "https://github.com/AndreM222/Windows-Dotfiles.git", ".config"),
-            @("PowerShell", "https://github.com/AndreM222/PowerShell.git", "Documents"),
+            @("PowerShell", "https://github.com/AndreM222/PowerShell.git", ".config"),
             @("nvim", "https://github.com/AndreM222/nvim.git", "AppData\Local")
         )
     }
-    
+
     @{
         TITLE = "Script Dotfiles"
         MANAGER = "SCRIPT"
@@ -161,10 +161,11 @@
     }
 
     @{
-        TITLE = "Create Dotfile"
+        TITLE = "ENV Setup"
         MANAGER = "CREATE"
         CONTAINER = @( # (File, Content, Path)
-            ,@(".czrc", '{ "path": "cz-conventional-changelog" }', ".")
+            @(".czrc", '{ "path": "cz-conventional-changelog" }', "."),
+            @("Microsoft.PowerShell_profile.ps1", '. $env:USERPROFILE\.config\powershell\user_profile.ps1', "Documents\PowerShell")
         )
     }
 )
