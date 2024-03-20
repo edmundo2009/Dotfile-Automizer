@@ -70,7 +70,6 @@
             @("RipGrep", "BurntSushi.ripgrep.MSVC", "BurntSushi.ripgrep.MSVC"),
             @("LazyGit", "JesseDuffield.lazygit", "lazygit"),
             # Server
-            @("Clangd", "LLVM.clangd", "clangd"),
             @("Lua Language Server", "LuaLS.lua-language-server", "lua-language-server"),
             @("LLVM", "LLVM.LLVM", "-i LLVM.LLVM")
         )
