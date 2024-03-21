@@ -1,0 +1,51 @@
+{[
+    {
+        "TITLE": "Winget Tools",
+        "MANAGER": "WINGET",
+        "CONTAINER": [
+            ["SQLite", "SQLite.SQLite", "SQLite.SQLite"],
+            ["Neovim", "Neovim.Neovim", "Neovim"],
+            ["Oh My Posh", "JanDeDobbeleer.OhMyPosh", "JanDeDobbeleer.OhMyPosh -s winget"],
+            ["Yarn", "Yarn.Yarn", "Yarn.Yarn"],
+            ["Fuzzy Finder", "junegunn.fzf", "fzf"],
+            ["Bat", "sharkdp.bat", "sharkdp.bat"],
+            ["LazyDocker", "JesseDuffield.Lazydocker", "JesseDuffield.Lazydocker"],
+            ["NTop", "gsass1.NTop", "ntop"],
+            ["RipGrep", "BurntSushi.ripgrep.MSVC", "BurntSushi.ripgrep.MSVC"],
+            ["LazyGit", "JesseDuffield.lazygit", "lazygit"],
+
+            ["Lua Language Server", "LuaLS.lua-language-server", "lua-language-server"],
+            ["LLVM", "LLVM.LLVM", "-i LLVM.LLVM"]
+        ]
+    },
+
+    {
+        "TITLE": "Scoop Tools",
+        "MANAGER": "SCOOP",
+        "CONTAINER": [
+            ["Fira Code Font", "FiraCode-NF-Mono", "nerd-fonts/FiraCode-NF-Mono"],
+            ["GCC", "gcc", "gcc"]
+        ]
+    },
+
+    {
+        "TITLE": "PowerShell Tools",
+        "MANAGER": "POWERSHELL",
+        "CONTAINER": [
+            ["PSFzf", "PSFzf", "PSFzf"],
+            ["Posh Git", "posh-git", "posh-git -Scope CurrentUser"],
+            ["Terminal Icons", "Terminal-Icons", "Terminal-Icons -Repository PSGallery"],
+            ["PSReadline", "PSReadLine", "PSReadLine -AllowPrereleas"],
+            ["Z", "z", "z"]
+        ]
+    },
+
+    {
+        "TITLE": "ENV Setup",
+        "MANAGER": "CREATE",
+        "CONTAINER": [
+            ["Microsoft.PowerShell_profile.ps1", ". $env:USERPROFILE/.config/powershell/user_profile.ps1", "Documents/PowerShell"]
+        ]
+    }
+
+}]

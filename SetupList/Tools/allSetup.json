@@ -1,0 +1,64 @@
+{[
+    {
+        "TITLE": "NPM Tools",
+        "MANAGER": "NPM",
+        "CONTAINER": [
+            ["Commitizen", "commitizen", "commitizen cz-conventional-changelog"],
+            ["Generate", "generate", "generate"],
+            ["Generate License", "generate-license", "generate-license"],
+            ["Npm Check Updates", "npm-check-updates", "npm-check-updates"],
+
+            ["Live Server", "live-server", "live-server"],
+            ["Pyright", "pyright", "pyright"],
+            ["Typescript Language Server", "typescript-language-server", "typescript-language-server"],
+            ["Typescript", "typescript", "typescript"],
+            ["Tailwindcss Language Server", "tailwindcss-language-server", "tailwindcss-language-server"],
+
+            ["prettier", "prettier", "prettier"]
+        ]
+    },
+
+    {
+        "TITLE": "Dotnet Tools",
+        "MANAGER": "DOTNET",
+        "CONTAINER": [
+            ["CSharp LS", "csharp-ls", "csharp-ls"]
+        ]
+    },
+
+    {
+        "TITLE": "Pip Tools",
+        "MANAGER": "PIP",
+        "CONTAINER": [
+            ["Autopep8", "autopep8", "autopep8"]
+        ]
+    },
+
+    {
+        "TITLE": "Git Dotfiles",
+        "MANAGER": "GIT",
+        "CONTAINER": [
+            ["Dotfile-Automizer", "https://github.com/AndreM222/Dotfile-Automizer.git", ".config"],
+            ["Windows-Dotfiles", "https://github.com/AndreM222/Windows-Dotfiles.git", ".config"],
+            ["PowerShell", "https://github.com/AndreM222/PowerShell.git", ".config"],
+            ["nvim", "https://github.com/AndreM222/nvim.git", "AppData/Local"]
+        ]
+    },
+
+    {
+        "TITLE": "Script Dotfiles",
+        "MANAGER": "SCRIPT",
+        "CONTAINER": [
+            ["AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState", "settings.json"],
+            [".", ".gitconfig"]
+        ]
+    },
+
+    {
+        "TITLE": "ENV Setup",
+        "MANAGER": "CREATE",
+        "CONTAINER": [
+            [".czrc", "{ \"path\": \"cz-conventional-changelog\" }", "."]
+        ]
+    }
+}]

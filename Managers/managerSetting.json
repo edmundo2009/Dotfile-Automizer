@@ -1,0 +1,78 @@
+{
+    "WINGET": {
+        "OS": ["windows"],
+        "INSTALL_TYPE": "Search",
+        "MANAGER_INSTALLER": "Winget Install",
+        "MANAGER_UNINSTALLER": "Winget Uninstall",
+        "FINDER": "Winget List --id"
+    },
+
+    "NVM": {
+        "OS": ["windows", "unix"],
+        "INSTALL_TYPE": "Executable",
+        "MANAGER_INSTALLER": "NVM Install",
+        "MANAGER_UNINSTALLER": "NVM Uninstall"
+    },
+
+    "SCOOP_MANAGER": {
+        "OS": ["windows"],
+        "INSTALL_TYPE": "Command",
+        "MANAGER_INSTALLER": "Invoke-RestMethod",
+        "MANAGER_UNINSTALLER": "scoop uninstall scoop"
+    },
+
+    "NPM": {
+        "OS": ["windows", "unix"],
+        "INSTALL_TYPE": "Search",
+        "MANAGER_INSTALLER": "npm install -g",
+        "MANAGER_UNINSTALLER": "npm uninstall -g",
+        "FINDER": "npm list -g"
+    },
+
+    "DOTNET": {
+        "OS": ["windows", "unix"],
+        "INSTALL_TYPE": "Search",
+        "MANAGER_INSTALLER": "dotnet tool install -g",
+        "MANAGER_UNINSTALLER": "dotnet tool uninstall -g",
+        "FINDER": "dotnet tool list -g"
+    },
+
+    "PIP": {
+        "OS": ["windows", "unix"],
+        "INSTALL_TYPE": "Search",
+        "MANAGER_INSTALLER": "Pip Install",
+        "MANAGER_UNINSTALLER": "Pip Uninstall",
+        "FINDER": "Pip show"
+    },
+
+    "SCOOP": {
+        "OS": ["windows"],
+        "INSTALL_TYPE": "Search",
+        "MANAGER_INSTALLER": "Scoop Install",
+        "MANAGER_UNINSTALLER": "Scoop Uninstall",
+        "FINDER": "Scoop List"
+    },
+
+    "POWERSHELL": {
+        "OS": ["windows"],
+        "INSTALL_TYPE": "Search",
+        "MANAGER_INSTALLER": "Install-Module -Force",
+        "MANAGER_UNINSTALLER": "Uninstall-Module -Force",
+        "FINDER": "Get-Module -ListAvailable"
+    },
+
+    "GIT": {
+        "OS": ["windows", "unix"],
+        "INSTALL_TYPE": "Git"
+    },
+
+    "SCRIPT": {
+        "OS": ["windows", "unix"],
+        "INSTALL_TYPE": "Script"
+    },
+
+    "CREATE": {
+        "OS": ["windows", "unix"],
+        "INSTALL_TYPE": "Create"
+    }
+}
