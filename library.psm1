@@ -24,7 +24,7 @@ function warnMSG # <- Return true if user wants to proceed
     {
         $answer = (Read-Host).ToUpper() # Get user response
     } while(@("", "N", "NO", "Y", "YE", "YES") -notcontains $answer)
-    
+
     if($answer[0] -eq "N") # If user response is no than return false
     {
         Write-Host "৹ Setup Canceled [C]" -ForegroundColor red
@@ -40,8 +40,8 @@ function errorCheck # <- Return true if max tries reached
 {
     [OutputType([Boolean])]
     Param(
-        [Parameter(Mandatory=$true)][UInt16] $code, 
-        [Parameter(Mandatory=$true)][String] $message, 
+        [Parameter(Mandatory=$true)][UInt16] $code,
+        [Parameter(Mandatory=$true)][String] $message,
         [Parameter(Mandatory=$true)][UInt16] $count
     )
 
@@ -201,7 +201,7 @@ function installerCommand # Check with command
             {
                 Write-Host "৹ $($curr[0]) Is Installed [✓]" -ForegroundColor Green # If installed than print
                 break
-            } else      
+            } else
             {
                 Write-Host "Installing $($curr[0]) ..."
                 Invoke-Expression "$manager $($curr[2])" # If not installed than install
@@ -270,7 +270,7 @@ function gitRepoSetup # Setup From Git Repos
         if(!(Test-Path -Path "$($curr[2])\$($curr[0])\"))
         {
             $userResponse = warnMSG "$($curr[0])"
-            if($userResponse) 
+            if($userResponse)
             {
                 New-Item -ItemType Directory -Path "$($curr[2])\$($curr[0])\" | Out-Null # If directory does not exist than create
             }
@@ -321,7 +321,7 @@ function scriptSetup
             $userResponse = warnMSG $curr[1] # Check if user wants to continue
             if($userResponse)
             {
-                while(scriptChecker "$env:USERPROFILE\.config\Windows-Dotfiles\TerminalConfig\$($curr[1])" "$($curr[0])\$($curr[1])" -and errorCheck 80 $curr[1] $count)
+                while((scriptChecker "$env:USERPROFILE\.config\Windows-Dotfiles\TerminalConfig\$($curr[1])" "$($curr[0])\$($curr[1])") -and errorCheck 80 $curr[1] $count)
                 {
                     Copy-Item -force "$env:USERPROFILE\.config\Windows-Dotfiles\TerminalConfig\$($curr[1])" "$($curr[0])" # Copy file to designated location
                     $count++
