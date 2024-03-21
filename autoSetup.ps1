@@ -1,5 +1,5 @@
 if($env:OS -notlike "*Windows*")
-{ 
+{
     Write-Host "> This script is only for Windows OS" -ForegroundColor DarkRed
     exit
 }
@@ -73,44 +73,44 @@ foreach($item in $list)
 
         #region Executable Installer
         "Executable"
-        { 
-            installerExe $manager[$item["MANAGER"]]["MANAGER_INSTALLER"] $item["CONTAINER"] 
+        {
+            installerExe $manager[$item["MANAGER"]]["MANAGER_INSTALLER"] $item["CONTAINER"]
         }
         #endregion Executable Installer
 
         #region Executable Installer
         "Command"
-        { 
-            installerCommand $manager[$item["MANAGER"]]["MANAGER_INSTALLER"] $item["CONTAINER"] 
+        {
+            installerCommand $manager[$item["MANAGER"]]["MANAGER_INSTALLER"] $item["CONTAINER"]
         }
         #endregion Executable Installer
 
 
         #region Search Installer
         "Search"
-        { 
-            installerSearch $manager[$item["MANAGER"]]["FINDER"] $manager[$item["MANAGER"]]["MANAGER_INSTALLER"] $item["CONTAINER"] 
+        {
+            installerSearch $manager[$item["MANAGER"]]["FINDER"] $manager[$item["MANAGER"]]["MANAGER_INSTALLER"] $item["CONTAINER"]
         }
         #region Search Installer
 
         #region Git Setups
         "Git"
-        { 
-            gitRepoSetup $item["CONTAINER"] 
+        {
+            gitRepoSetup $item["CONTAINER"]
         }
         #endregion Git Dotfile Setups
 
         #region Script Dotfile Setup
         "Script"
-        { 
-            scriptSetup $item["CONTAINER"] 
+        {
+            scriptSetup $item["CONTAINER"]
         }
         #endregion Script Dotfile Setup
 
         #region Create Dotfile Setup
         "Create"
-        { 
-            createSetup $item["CONTAINER"] 
+        {
+            createSetup $item["CONTAINER"]
         }
         #endregion Script Dotfile Setup
 
