@@ -7,36 +7,36 @@ if($env:OS -notlike "*Windows*")
 #region Module Setup
 [String] $urlGitLink = "https://raw.githubusercontent.com/AndreM222/Dotfile-Automizer/master" # Link to the git repository for modules
 
-[Object] $modules = @("listSetup.psm1", "library.psm1", "managerSetting.psm1") # List of modules to import
+[Object] $modules = @(
+    "listSetup.psm1", # <- Installation List
+    "library.psm1", # <- Functions For Setup
+    "managerSetting.psm1" # <- Manager Setup
+) # List of modules to import
 
 if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer") # Check if the current location is not the Dotfile-Automizer folder
 {
     foreach($curr in $modules)
     {
         Invoke-RestMethod "$urlGitLink/$curr" > $curr # Download the modules from the git repository
+
+        Import-Module ".\$curr"
+
+        if(Test-Path -Path $curr)
+        {
+            Remove-Item $curr # Remove modules from current location
+        }
     }
 }
+else
+{
+    foreach($curr in $modules)
+    {
+        Import-Module ".\$curr"
+    }
 
-#endregion Module Setup
-
-#region Managers
-Import-Module ".\managerSetting.psm1" # Importing the list of managers
-
-#   Imported List:
-#   - $manager <- Variable containing installation list
-
-#endregion Managers
-
-#region Variables
-Import-Module ".\listSetup.psm1" # Importing the list of tools for install
-
-# Imported List:
-#   - $list <- Variable containing installation list
-
-#endregion Variables
+}
 
 #region Functions
-Import-Module ".\library.psm1"
 
 # Imported Functions List:
 #  - installerExe <- (Name, Executable, Path)
@@ -49,19 +49,6 @@ Import-Module ".\library.psm1"
 #  - section <- (Title)
 
 #endregion Functions
-
-#region Module Removal
-if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer")
-{
-    foreach($curr in $modules)
-    {
-        if(Test-Path -Path $curr)
-        {
-            Remove-Item $curr # Remove modules from current location
-        }
-    }
-}
-#endregion Module Removal
 
 #region Setup Functions
 foreach($item in $list)

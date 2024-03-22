@@ -28,7 +28,7 @@
         MANAGER = "WINGET"
         CONTAINER = @( # (Name, Id, Path)
             # Package managers <- Required
-            @("PowerShell Core", " Microsoft.PowerShell_8wekyb3d8bbwe", "Microsoft.Powershell"),
+            @("PowerShell Core", "Microsoft.Powershell", "Microsoft.Powershell"),
             @("Git", "Git.Git", "Git.Git"),
             @("NVM", "CoreyButler.NVMforWindows", "CoreyButler.NVMforWindows"),
             @("Python3", "Python.Python.3.12", "Python3")
