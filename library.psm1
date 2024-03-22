@@ -321,7 +321,7 @@ function scriptSetup
             $userResponse = warnMSG $curr[1] # Check if user wants to continue
             if($userResponse)
             {
-                while((scriptChecker "$env:USERPROFILE\.config\Windows-Dotfiles\TerminalConfig\$($curr[1])" "$($curr[0])\$($curr[1])") -and errorCheck 80 $curr[1] $count)
+                while((scriptChecker "$env:USERPROFILE\.config\Windows-Dotfiles\TerminalConfig\$($curr[1])" "$($curr[0])\$($curr[1])") -and (errorCheck 80 $curr[1] $count))
                 {
                     Copy-Item -force "$env:USERPROFILE\.config\Windows-Dotfiles\TerminalConfig\$($curr[1])" "$($curr[0])" # Copy file to designated location
                     $count++
@@ -353,7 +353,7 @@ function createSetup
                 Write-Host "৹ Setup $($curr[0]) Completed [✓]" -ForegroundColor Green # If user response is yes than print completed
                 break
             }
-            Write-Output $curr[1] > "$($curr[2])\$($curr[0])" # Create directory
+            Write-Output $curr[1] >> "$($curr[2])\$($curr[0])" # Create directory
             $count++
         }
     }
