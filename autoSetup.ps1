@@ -7,10 +7,23 @@ if($env:OS -notlike "*Windows*")
 #region Module Setup
 [String] $urlGitLink = "https://raw.githubusercontent.com/AndreM222/Dotfile-Automizer/master" # Link to the git repository for modules
 
+$manager = Get-Content ".\Managers\managerSetting.json" | ConvertFrom-Json # <- Manager Setup
+
+[Object] $jsonFolders =  @( # <- Installation List > Run priority from top to bottom
+    ".\Managers\setup",
+    ".\SetupList\Tools",
+    ".\SetupList\Others"
+)
+
+[Object] $listTools = @()
+
+foreach($folder in $jsonFolders) # Setup all json files list
+{
+    $listTools += Get-ChildItem $folder
+}
+
 [Object] $modules = @(
-    "listSetup.psm1", # <- Installation List
-    "library.psm1", # <- Functions For Setup
-    "managerSetting.psm1" # <- Manager Setup
+    "library.psm1" # <- Functions For Setup
 ) # List of modules to import
 
 if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer") # Check if the current location is not the Dotfile-Automizer folder
@@ -51,56 +64,66 @@ else
 #endregion Functions
 
 #region Setup Functions
-foreach($item in $list)
+foreach($script in $listTools)
 {
-    section $item["TITLE"] # Print the section title
-
-    Switch($manager[$item["MANAGER"]]["INSTALL_TYPE"])
+    [Object] $list = Get-Content -raw $script | ConvertFrom-Json
+    foreach($item in $list)
     {
+        section $item.TITLE # Print the section title
 
-        #region Executable Installer
-        "Executable"
+        Switch($manager.($item.MANAGER).INSTALL_TYPE)
         {
-            installerExe $manager[$item["MANAGER"]]["MANAGER_INSTALLER"] $item["CONTAINER"]
+            #region Executable Installer
+            "Executable"
+            {
+                installerExe $manager.($item.MANAGER).MANAGER_INSTALLER $item.CONTAINER
+            }
+            #endregion Executable Installer
+
+            #region Executable Installer
+            "Command"
+            {
+                installerCommand $manager.($item.MANAGER).MANAGER_INSTALLER $item.CONTAINER
+            }
+            #endregion Executable Installer
+
+
+            #region Search Installer
+            "Search"
+            {
+                installerSearch $manager.($item.MANAGER).FINDER $manager.($item.MANAGER).MANAGER_INSTALLER $item.CONTAINER
+            }
+            #region Search Installer
+
+            #region Git Setups
+            "Git"
+            {
+                gitRepoSetup $item.CONTAINER
+            }
+            #endregion Git Dotfile Setups
+
+            #region Script Dotfile Setup
+            "Script"
+            {
+                scriptSetup $item.CONTAINER
+            }
+            #endregion Script Dotfile Setup
+
+            #region Create Dotfile Setup
+            "Create"
+            {
+                createSetup $item.CONTAINER
+            }
+            #endregion Script Dotfile Setup
+
+
+            #region Unkown Installer
+            default
+            {
+                Write-Host "> Unknown Installer" -ForegroundColor DarkRed
+            }
+            #endregion Unkown Installer
         }
-        #endregion Executable Installer
-
-        #region Executable Installer
-        "Command"
-        {
-            installerCommand $manager[$item["MANAGER"]]["MANAGER_INSTALLER"] $item["CONTAINER"]
-        }
-        #endregion Executable Installer
-
-
-        #region Search Installer
-        "Search"
-        {
-            installerSearch $manager[$item["MANAGER"]]["FINDER"] $manager[$item["MANAGER"]]["MANAGER_INSTALLER"] $item["CONTAINER"]
-        }
-        #region Search Installer
-
-        #region Git Setups
-        "Git"
-        {
-            gitRepoSetup $item["CONTAINER"]
-        }
-        #endregion Git Dotfile Setups
-
-        #region Script Dotfile Setup
-        "Script"
-        {
-            scriptSetup $item["CONTAINER"]
-        }
-        #endregion Script Dotfile Setup
-
-        #region Create Dotfile Setup
-        "Create"
-        {
-            createSetup $item["CONTAINER"]
-        }
-        #endregion Script Dotfile Setup
-
     }
 }
 

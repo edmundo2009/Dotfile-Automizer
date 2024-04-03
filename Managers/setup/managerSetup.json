@@ -1,4 +1,4 @@
-{[
+[
     {
         "TITLE": "Package Managers",
         "MANAGER": "WINGET",
@@ -25,4 +25,4 @@
             ["Scoop", "scoop update", "get.scoop.sh"]
         ]
     }
-}]
+]
