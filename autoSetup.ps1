@@ -4,27 +4,56 @@ if($env:OS -notlike "*Windows*")
     exit
 }
 
-#region Module Setup
-[String] $urlGitLink = "https://raw.githubusercontent.com/AndreM222/Dotfile-Automizer/master" # Link to the git repository for modules
+[String] $user = "AndreM222" # User of repo
+[String] $repo = "Dotfile-Automizer" # Repo of automizer
 
-$manager = Get-Content ".\Managers\managerSetting.json" | ConvertFrom-Json # <- Manager Setup
+#region Module Setup
+[String] $urlFileGitLink = "https://api.github.com/repos/$user/$repo/contents" # Link to the git repository files
+[String] $urlGitLink = "https://raw.githubusercontent.com/$user/$repo/master" # Link to the git repository scripts
+
+if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer") # Check if the current location is not the Dotfile-Automizer folder
+{
+    $manager = Invoke-WebRequest "$urlGitLink\.\Managers\managerSetting.json" | ConvertFrom-Json # <- Web Manager Setup
+}
+else
+{
+    $manager = Get-Content ".\Managers\managerSetting.json" | ConvertFrom-Json # <- Local Manager Setup
+}
 
 [Object] $jsonFolders =  @( # <- Installation List > Run priority from top to bottom
-    ".\Managers\setup",
-    ".\SetupList\Tools",
-    ".\SetupList\Others"
+    "./Managers/setup/",
+    "./SetupList/Tools/",
+    "./SetupList/Others/"
 )
 
 [Object] $listTools = @()
 
-foreach($folder in $jsonFolders) # Setup all json files list
-{
-    $listTools += Get-ChildItem $folder
-}
-
 [Object] $modules = @(
     "library.psm1" # <- Functions For Setup
 ) # List of modules to import
+
+if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer") # Check if the current location is not the Dotfile-Automizer folder
+{
+    foreach($folder in $jsonFolders) # Setup all json files list from git
+    {
+        [String] $uri = "$urlFileGitLink/$folder"
+        if([uri]::IsWellFormedUriString($uri, 'Absolute'))
+        {
+            [Object] $jfile = (Invoke-WebRequest -Uri $uri) | ConvertFrom-Json
+            foreach($script in $jfile)
+            {
+                $listTools += $script.download_url # Setup Raw Url
+            }
+        }
+    }
+}
+else
+{
+    foreach($folder in $jsonFolders) # Setup all json files list from local
+    {
+        $listTools += Get-ChildItem $folder
+    }
+}
 
 if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer") # Check if the current location is not the Dotfile-Automizer folder
 {
@@ -66,7 +95,15 @@ else
 #region Setup Functions
 foreach($script in $listTools)
 {
-    [Object] $list = Get-Content -raw $script | ConvertFrom-Json
+    if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer") # Check if the current location is not the Dotfile-Automizer folder
+    {
+        [Object] $list = (New-Object System.Net.WebClient).DownloadString($script) | ConvertFrom-Json # Get Web Lists
+    }
+    else
+    {
+        [Object] $list = Get-Content -raw $script | ConvertFrom-Json # Get Local Lists
+    }
+
     foreach($item in $list)
     {
         section $item.TITLE # Print the section title
