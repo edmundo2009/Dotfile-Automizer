@@ -37,13 +37,16 @@ if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer") # Ch
     foreach($folder in $jsonFolders) # Setup all json files list from git
     {
         [String] $uri = "$urlFileGitLink/$folder"
-        if([uri]::IsWellFormedUriString($uri, 'Absolute'))
+        try
         {
             [Object] $jfile = (Invoke-WebRequest -Uri $uri) | ConvertFrom-Json
             foreach($script in $jfile)
             {
                 $listTools += $script.download_url # Setup Raw Url
             }
+        }
+        catch {
+            Write-Host "> $folder Not Found" -ForegroundColor Yellow
         }
     }
 }
