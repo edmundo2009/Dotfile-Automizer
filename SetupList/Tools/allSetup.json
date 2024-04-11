@@ -55,7 +55,7 @@
     },
 
     {
-        "TITLE": "ENV Setup",
+        "TITLE": "Commitizen ENV",
         "MANAGER": "CREATE",
         "CONTAINER": [
             [".czrc", "{ \"path\": \"cz-conventional-changelog\" }", "."]
