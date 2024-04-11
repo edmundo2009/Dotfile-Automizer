@@ -11,7 +11,11 @@ if($env:OS -notlike "*Windows*")
 [String] $urlFileGitLink = "https://api.github.com/repos/$user/$repo/contents" # Link to the git repository files
 [String] $urlGitLink = "https://raw.githubusercontent.com/$user/$repo/master" # Link to the git repository scripts
 
-if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer") # Check if the current location is not the Dotfile-Automizer folder
+[Bool] $isLocal = [String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer"
+
+[Object] $manager = @()
+
+if($isLocal)
 {
     $manager = Invoke-WebRequest "$urlGitLink\.\Managers\managerSetting.json" | ConvertFrom-Json # <- Web Manager Setup
 }
@@ -32,7 +36,7 @@ else
     "library.psm1" # <- Functions For Setup
 ) # List of modules to import
 
-if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer") # Check if the current location is not the Dotfile-Automizer folder
+if($isLocal) # Setup Json Lists
 {
     foreach($folder in $jsonFolders) # Setup all json files list from git
     {
@@ -58,7 +62,7 @@ else
     }
 }
 
-if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer") # Check if the current location is not the Dotfile-Automizer folder
+if($isLocal) # Check if the current location is not the Dotfile-Automizer folder
 {
     foreach($curr in $modules)
     {
@@ -81,30 +85,18 @@ else
 
 }
 
-#region Functions
-
-# Imported Functions List:
-#  - installerExe <- (Name, Executable, Path)
-#  - installerCommand <- (Name, Executable, Path)
-#  - installerSearch <- (Name, Id, Path)
-#  - gitRepoSetup <- (Name, Repo, Path)
-#  - scriptSetup <- (Path, File)
-#  - createSetup <- (File, Content, Path)
-#
-#  - section <- (Title)
-
-#endregion Functions
-
 #region Setup Functions
 foreach($script in $listTools)
 {
-    if([String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer") # Check if the current location is not the Dotfile-Automizer folder
+    [Object] $List = @()
+
+    if($isLocal)
     {
-        [Object] $list = (New-Object System.Net.WebClient).DownloadString($script) | ConvertFrom-Json # Get Web Lists
+        $list = (New-Object System.Net.WebClient).DownloadString($script) | ConvertFrom-Json # Get Web Lists
     }
     else
     {
-        [Object] $list = Get-Content -raw $script | ConvertFrom-Json # Get Local Lists
+        $list = Get-Content -raw $script | ConvertFrom-Json # Get Local Lists
     }
 
     foreach($item in $list)
