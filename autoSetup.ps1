@@ -4,16 +4,37 @@ if($env:OS -notlike "*Windows*")
     exit
 }
 
+
+#region variables
+
+
+# -- [Good] You can make changes to this variables for desired workflow
+
 [String] $user = "AndreM222" # User of repo
 [String] $repo = "Dotfile-Automizer" # Repo of automizer
 
-#region Module Setup
+[Object] $jsonFolders =  @( # <- Installation List > Run priority from top to bottom
+    "./Managers/setup/",
+    "./SetupList/Tools/",
+    "./SetupList/Others/"
+)
+
+[Object] $modules = @( # List of modules to import [Warning] Not recommended to delete from here
+    "library.psm1" # <- Contains Functions For Setup
+)
+
+
+# -- [Warning] Most Probably the bottom variables should not be edited
+
 [String] $urlFileGitLink = "https://api.github.com/repos/$user/$repo/contents" # Link to the git repository files
 [String] $urlGitLink = "https://raw.githubusercontent.com/$user/$repo/master" # Link to the git repository scripts
 
-[Bool] $isLocal = [String](Split-Path -Path (Get-Location) -Leaf) -ne "Dotfile-Automizer"
+[Bool] $isLocal = [String](Split-Path -Path (Get-Location) -Leaf) -ne $repo # <- Get if installing through local or web
 
-[Object] $manager = @()
+[Object] $jsonList = @() # <- Storage For installations
+
+[Object] $manager = @() # <- Managers list setups
+#endregion variables
 
 if($isLocal)
 {
@@ -23,34 +44,23 @@ else
 {
     $manager = Get-Content ".\Managers\managerSetting.json" | ConvertFrom-Json # <- Local Manager Setup
 }
-
-[Object] $jsonFolders =  @( # <- Installation List > Run priority from top to bottom
-    "./Managers/setup/",
-    "./SetupList/Tools/",
-    "./SetupList/Others/"
-)
-
-[Object] $listTools = @()
-
-[Object] $modules = @(
-    "library.psm1" # <- Functions For Setup
-) # List of modules to import
-
 if($isLocal) # Setup Json Lists
 {
     foreach($folder in $jsonFolders) # Setup all json files list from git
     {
-        [String] $uri = "$urlFileGitLink/$folder"
+        [String] $uri = "$urlFileGitLink/$folder" # Uri link of folder
+
         try
         {
-            [Object] $jfile = (Invoke-WebRequest -Uri $uri) | ConvertFrom-Json
+            [Object] $jfile = (Invoke-WebRequest -Uri $uri) | ConvertFrom-Json # Container of current folder
+
             foreach($script in $jfile)
             {
-                $listTools += $script.download_url # Setup Raw Url
+                $jsonList += $script.download_url # Setup Raw Url from folder
             }
         }
         catch {
-            Write-Host "> $folder Not Found" -ForegroundColor Yellow
+            Write-Host "> $folder Not Found" -ForegroundColor Yellow # Probably wrong folder url or empty
         }
     }
 }
@@ -58,7 +68,7 @@ else
 {
     foreach($folder in $jsonFolders) # Setup all json files list from local
     {
-        $listTools += Get-ChildItem $folder
+        $jsonList += Get-ChildItem $folder
     }
 }
 
@@ -86,7 +96,7 @@ else
 }
 
 #region Setup Functions
-foreach($script in $listTools)
+foreach($script in $jsonList)
 {
     [Object] $List = @()
 
