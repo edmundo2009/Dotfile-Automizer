@@ -40,17 +40,25 @@
     "PIP": {
         "OS": ["windows", "unix"],
         "INSTALL_TYPE": "Search",
-        "MANAGER_INSTALLER": "Pip Install",
-        "MANAGER_UNINSTALLER": "Pip Uninstall",
-        "FINDER": "Pip show"
+        "MANAGER_INSTALLER": "pip install",
+        "MANAGER_UNINSTALLER": "pip uninstall",
+        "FINDER": "pip show"
     },
 
-    "SCOOP": {
+    "SCOOP_PKG": {
         "OS": ["windows"],
         "INSTALL_TYPE": "Search",
         "MANAGER_INSTALLER": "Scoop Install",
         "MANAGER_UNINSTALLER": "Scoop Uninstall",
         "FINDER": "Scoop List"
+    },
+
+    "SCOOP_BUCKET": {
+        "OS": ["windows"],
+        "INSTALL_TYPE": "Search",
+        "MANAGER_INSTALLER": "scoop bucket add",
+        "MANAGER_UNINSTALLER": "scoop bucket rm",
+        "FINDER": "scoop bucket list"
     },
 
     "POWERSHELL": {

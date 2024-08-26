@@ -20,8 +20,16 @@
     },
 
     {
+        "TITLE": "Scoop Buckets",
+        "MANAGER": "SCOOP_BUCKET",
+        "CONTAINER": [
+            ["Nerd Font", "Nerd-Fonts", "nerd-fonts"]
+        ]
+    },
+
+    {
         "TITLE": "Scoop Tools",
-        "MANAGER": "SCOOP",
+        "MANAGER": "SCOOP_PKG",
         "CONTAINER": [
             ["Fira Code Font", "FiraCode-NF-Mono", "nerd-fonts/FiraCode-NF-Mono"],
             ["GCC", "gcc", "gcc"]

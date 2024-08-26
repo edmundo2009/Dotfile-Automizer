@@ -346,6 +346,23 @@ function createSetup
 
         [UInt16] $count = 0
 
+        while(errorCheck 95 $curr[0] $count)
+        {
+            if(Test-Path -Path "$($curr[2])\")
+            {
+                if($count -gt 0)
+                {
+                    Write-Host " > Setup Folder $($curr[2])\ Completed [✓]" -ForegroundColor Green # If user response is yes than print completed
+                    $count = 0
+                }
+
+                break
+            }
+
+            New-Item -Force "$($curr[2])\" # Create directory
+            $count++
+        }
+
         while(errorCheck 90 $curr[0] $count)
         {
             if(Test-Path -Path "$($curr[2])\$($curr[0])")
@@ -353,7 +370,7 @@ function createSetup
                 Write-Host "৹ Setup $($curr[0]) Completed [✓]" -ForegroundColor Green # If user response is yes than print completed
                 break
             }
-            Write-Output $curr[1] >> "$($curr[2])\$($curr[0])" # Create directory
+            Write-Output $curr[1] >> "$($curr[2])\$($curr[0])" # Create file
             $count++
         }
     }
