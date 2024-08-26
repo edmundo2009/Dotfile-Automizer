@@ -10,7 +10,6 @@
             ["Fuzzy Finder", "junegunn.fzf", "fzf"],
             ["Bat", "sharkdp.bat", "sharkdp.bat"],
             ["LazyDocker", "JesseDuffield.Lazydocker", "JesseDuffield.Lazydocker"],
-            ["NTop", "gsass1.NTop", "ntop"],
             ["RipGrep", "BurntSushi.ripgrep.MSVC", "BurntSushi.ripgrep.MSVC"],
             ["LazyGit", "JesseDuffield.lazygit", "lazygit"],
 
