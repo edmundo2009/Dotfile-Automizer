@@ -6,7 +6,8 @@
             ["PowerShell Core", "Microsoft.Powershell", "Microsoft.Powershell"],
             ["Git", "Git.Git", "Git.Git"],
             ["NVM", "CoreyButler.NVMforWindows", "CoreyButler.NVMforWindows"],
-            ["Python3", "Python.Python.3.12", "Python3"]
+            ["Python3", "Python.Python.3.12", "Python3"],
+            ["Dotnet", "Microsoft.DotNet.SDK.8", "Microsoft.DotNet.SDK.8"]
         ]
     },
 
