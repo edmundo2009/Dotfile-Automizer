@@ -10,7 +10,7 @@ if($env:OS -notlike "*Windows*")
 
 # -- [Good] You can make changes to this variables for desired workflow
 
-[String] $user = "AndreM222" # User of repo
+[String] $user = "edmundo2009" # User of repo
 [String] $repo = "Dotfile-Automizer" # Repo of automizer
 
 [Object] $jsonFolders =  @( # <- Installation List > Run priority from top to bottom

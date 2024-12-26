@@ -4,41 +4,27 @@
 > The following is the link to the autosetup script: DO NOT RUN WITHOUT READING WHAT THE SCRIPT DOES
 > ```
 > Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-> Invoke-RestMethod https://raw.githubusercontent.com/AndreM222/Dotfile-Automizer/master/autoSetup.ps1 | Invoke-Expression
+> Invoke-RestMethod https://raw.githubusercontent.com/edmundo2009/Dotfile-Automizer/master/autoSetup.ps1 | Invoke-Expression
 > ```
-
-## Contents 📦
-
-- Dotfile Automizer Setup
 
 ## Navigation ✈️
 
-[Back To Windows-Dotfiles <-](https://github.com/AndreM222/Windows-Dotfiles) (For Detailed Setup)
+[Back To Windows-Dotfiles <-](https://github.com/edmundo2009/Windows-Dotfiles) (For Detailed Setup)
 
-- [Navigate To Powershell Dotfiles <-](https://github.com/AndreM222/PowerShell) (For Detailed Setup)
+- [Navigate To Powershell Dotfiles <-](https://github.com/edmundo2009/PowerShell) (For Detailed Setup)
 
-- [Navigate To Neovim Dotfiles <-](https://github.com/AndreM222/nvim) (For Detailed Setup)
-
-## Dependencies 📃
-
-- Windows OS 🪟
+- [Navigate To Neovim Dotfiles <-](https://github.com/edmundo2009/nvim) (For Detailed Setup)
 
 ## Description ℹ️
 
-The following is a repository which contains my automated setup for [Windows OS](https://www.microsoft.com/en-us/windows?r=1).
 The project is specifically made for my own setup but if someone wants to use it than you are free to do so.
 I decided to make my own automizer instead of using other people's as I wanted to learn how to make one and
 also to customize it to my own needs.
 
 The language being used is [PowerShell](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/powershell)
-I specifically chose this language since it is by default installed on all Windows OS machines and is a powerful
-script which interpreter language is by default integrated.
+I specifically chose this language since it is by default installed on all Windows OS machines and is a powerful script which interpreter language is by default integrated.
 
-To make it easy to set up I came up with the idea of obtaining the raw path of the scripts from this github
-repository and invoke them directly into the command line. This way the user does not have to clone the repository to
-run the scripts.
-
-[LICENSE](https://github.com/AndreM222/Dotfile-Automizer/blob/master/License) <span style="font-size:2em">🪪</span>
+To make it easy to set up I came up with the idea of obtaining the raw path of the scripts from this github repository and invoke them directly into the command line. This way the user does not have to clone the repository to run the scripts.
 
 ## Instructions 📖
 

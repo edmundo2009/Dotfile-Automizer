@@ -38,10 +38,10 @@
         "TITLE": "Git Dotfiles",
         "MANAGER": "GIT",
         "CONTAINER": [
-            ["Dotfile-Automizer", "https://github.com/AndreM222/Dotfile-Automizer.git", ".config"],
-            ["Windows-Dotfiles", "https://github.com/AndreM222/Windows-Dotfiles.git", ".config"],
-            ["PowerShell", "https://github.com/AndreM222/PowerShell.git", ".config"],
-            ["nvim", "https://github.com/AndreM222/nvim.git", "AppData/Local"]
+            ["Dotfile-Automizer", "https://github.com/edmundo2009/Dotfile-Automizer.git", ".config"],
+            ["Windows-Dotfiles", "https://github.com/edmundo2009/Windows-Dotfiles.git", ".config"],
+            ["PowerShell", "https://github.com/edmundo2009/PowerShell.git", ".config"],
+            ["nvim", "https://github.com/edmundo2009/nvim.git", "AppData/Local"]
         ]
     },
 
